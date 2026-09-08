@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color system — "blueprint console" palette */
+  --color-ink: #0b1120;
+  --color-ink-soft: #0f1729;
+  --color-surface: #121b2e;
+  --color-surface-hi: #182338;
+  --color-line: #23304a;
+  --color-signal: #5eead4;
+  --color-signal-soft: #a7f3ea;
+  --color-violet: #818cf8;
+  --color-text: #e7ecf6;
+  --color-muted: #8b96ac;
+  --color-live: #34d399;
+
+  /* Type */
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --container-page: 1240px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    background: var(--color-ink);
+    color: var(--color-text);
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Fine blueprint grid backdrop, used behind the hero + section seams */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--color-signal);
+  }
+
+  .card-surface {
+    background: linear-gradient(180deg, var(--color-surface-hi), var(--color-surface));
+    border: 1px solid var(--color-line);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 3D tilt surface — pairs with the useTilt hook */
+  .tilt {
+    --tilt-glare-x: 50%;
+    --tilt-glare-y: 50%;
+    --tilt-glare-o: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .tilt-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: var(--tilt-glare-o);
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+      circle at var(--tilt-glare-x) var(--tilt-glare-y),
+      rgba(255, 255, 255, 0.16),
+      transparent 55%
+    );
+  }
+
+  .tilt-layer {
+    transform: translateZ(28px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tilt {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
