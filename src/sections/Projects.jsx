@@ -10,6 +10,15 @@ import insightflowPreview from "../assets/images/insightflow-preview.webp";
 
 const PROJECTS = [
     {
+        title: "Wazifny",
+        description:
+            "AI-powered employment platform built for Lebanon. It matches job seekers with real, active roles based on their skills and experience, while giving employers efficient tools to publish openings and manage applicants.",
+        stack: ["AI Job Matching", "Lebanon", "Employer Tools"],
+        link: "https://wazifny-fro.vercel.app/",
+        status: "Live · Featured",
+        visual: "wazifny",
+    },
+    {
         title: "Pharmanex",
         description:
             "Unified platform for managing pharmacy operations — inventory, sales, finance and reporting in one system, built full-stack with Django.",
@@ -66,7 +75,7 @@ function Projects() {
                     tag="projects"
                     title="Selected"
                     accent="work"
-                    description="A handful of products I've shipped end-to-end — from a pharmacy management platform to travel and food-ordering apps."
+                    description="Selected products I've taken from idea to launch, spanning AI, analytics, healthcare, travel and commerce."
                 />
 
                 <div ref={ref} className="reveal grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

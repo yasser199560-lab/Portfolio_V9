@@ -96,7 +96,7 @@ function Hero() {
 
                     <div className="mt-12 flex items-center gap-8 font-mono text-xs text-[var(--color-muted)]">
                         <div>
-                            <p className="text-[var(--color-text)] text-xl font-semibold">4+</p>
+                            <p className="text-[var(--color-text)] text-xl font-semibold">6+</p>
                             shipped projects
                         </div>
                         <div className="w-px h-8 bg-[var(--color-line)]" />
